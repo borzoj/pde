@@ -25,11 +25,10 @@ func TestAppend(t *testing.T) {
 		PatientID: &id1,
 		Created:   &t1,
 	}
-	id2 := "patient id 2"
 	t2 := time.Date(2017, time.February, 16, 0, 0, 0, 0, time.UTC)
 	e2 := Event{
 		Type:      "event.test",
-		PatientID: &id2,
+		PatientID: &id1,
 		Created:   &t2,
 	}
 	store := NewArrayStore()
@@ -48,7 +47,7 @@ func TestAppend(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, 1, len(p1Events))
 	assert.Equal(t, e1, p1Events[0])
-	assert.Equal(t, e2, p1Events[2])
+	assert.Equal(t, e2, p1Events[1])
 	p2Events, err = store.GetPatientEvents("patient id 2")
 	assert.Nil(t, err)
 	assert.Equal(t, 0, len(p2Events))
