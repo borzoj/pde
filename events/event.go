@@ -4,6 +4,12 @@ import (
 	"time"
 )
 
+// EventPatientCreate create patient event
+const EventPatientCreate = "patient.create"
+
+// EventPatientUpdate update patient event
+const EventPatientUpdate = "patient.update"
+
 // Attributes patient attributes
 type Attributes map[string]string
 

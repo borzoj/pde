@@ -1,5 +1,7 @@
 package events
 
+import "errors"
+
 const initialCapacity = 100
 
 // StoreInterface store interface
@@ -22,6 +24,9 @@ func NewArrayStore() StoreInterface {
 
 // Append append event
 func (store *ArrayStore) Append(event Event) error {
+	if nil == event.PatientID || "" == *event.PatientID {
+		return errors.New("patient id is required")
+	}
 	patientEvents, ok := store.events[*event.PatientID]
 	if !ok {
 		patientEvents = make([]Event, 0, initialCapacity)
